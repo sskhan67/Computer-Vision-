@@ -1,0 +1,41 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\deftab720
+\pard\pardeftab720\sl560\partightenfactor0
+
+\f0\fs43\fsmilli21600 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Fruit Classification:\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 This assignment was locked Oct 7 at 11:59pm.\
+\
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+\cf2 The goal is to automatically detect fruits on the conveyor belt. These are the following steps: \cb1 \
+\cb3 Step 1\'a0
+\b \'a0
+\b0 Separate the foreground (fruits) from the background. Using your combination/sequence of relevant functions, try to produce a binary thresholded image as clean as possible. The\'a0
+\b main.m MUST imshow the clean threshold image
+\b0 \'a0in a window labeled 'Clean Threshold Image'.\'a0\'a0\cb1 \
+\cb3 Step 2 Write a connected_components.m function file that\'a0 applies the connected components algorithm on the clean threshold image obtained in Step 1. The\'a0
+\b main.m MUST imshow a color image
+\b0 \'a0with labeled components in a separate window titled 'Connected Components'. You must implement both floodfill and union find based connected components. Have your script ask the grader which version they want to use.\cb1 \
+\cb3 Step 3\'a0Write a MATLAB function, region_properties.m that computes and returns the following region properties:\'a0\cb1 \
+\cb3 a. zeroth-, first- and second-order moments and central moments.\cb1 \
+\cb3 b. Area of the region (just count the number of pixels in the region).\cb1 \
+\cb3 Step 4\'a0Write a MATLAB function, PCA.m that inputs the regular/central moments (and any other parameters if needed) and returns:\cb1 \
+\cb3 a. Eigenvalues.\cb1 \
+\cb3 b. Direction of the region (theta).\cb1 \
+\cb3 c. Length of the major and minor axes.\cb1 \
+\cb3 c. Eccentricity.\cb1 \
+\cb3 STEP 5\'a0Implement the Wall-following algorithm to compute (and mark) the\'a0 perimeter of a region.\cb1 \
+\cb3 STEP 6\'a0\'a0Using a combination of region properties and any additional parameters that you may identify, CLASSIFY the foreground objects into categories: banana, tangerine, and apple. The\'a0
+\b main.m file MUST output the final image
+\b0 \'a0in a separate window titled 'Classified Objects' with: Foreground objects marked with black major and minor axes lines intersecting at the region's center, foreground object perimeters marked with respective colors (red for apple, orange for tangarine, and yellow for banana).\'a0\'a0\cb1 \
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+\cf2 \cb3 \outl0\strokewidth0 STEP 7\cf2 \cb1 \outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+\cf2 \cb3 Detect the banana stems and label them with an appropriate color in the output image. Try not to detect the banana tail. }
