@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww28600\viewh16580\viewkind0
+\deftab720
+\pard\pardeftab720\sl740\partightenfactor0
+
+\f0\fs57\fsmilli28800 \cf2 \cb3 \expnd0\expndtw0\kerning0
+Watershed Segmentation\cb1 \
+\pard\pardeftab720\sl360\qr\partightenfactor0
+
+\fs32 \cf2 \
+\pard\pardeftab720\sl560\partightenfactor0
+
+\fs43\fsmilli21600 \cf2 \cb3 \
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+
+\fs32 \cf2 \cb3 \outl0\strokewidth0 \strokec2 The goal of the project is to  implement the Lucas Kanade tracking algorithm to track interesting features from one frame to the other.\
+\pard\pardeftab720\sl380\sa240\partightenfactor0
+
+\b \cf2 \cb3 \outl0\strokewidth0 Algorithm Steps
+\b0\fs43\fsmilli21600 \
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+
+\fs32 \cf2 \cb3 \outl0\strokewidth0 \strokec2  1. MAIN.m (top level\'a0
+\b script\'a0
+\b0 file): MAIN.m must do:\
+a) Read in the first image from the video sequence and ask users to "cherrypick" 21 desired feature points to track. Use ginput to allow users select feature points. MAIN.m MUST imshow the input image with features points highlighted in red. These feature points are to be stored in an array, topfeatures.\'a0 Note that a feature point is a single pixel, which is too small to visualize clearly. To better show the feature points, place a 3x3 cross ("X") centered at each one of the feature points. imshow the original image with feature points in a separate window titled, "Selected Features". The image window may be small, use truesize([500 500]) for a larger window. \
+b)\'a0MAIN.m then continues to loop through images (t=1 till t=last but one image), in each iteration passing a pair of image frames (It and It+1), topfeatures array, and window (size 11x11 or 15x15 or 17x17) to the function:\'a0
+\b Lucas_Kanade
+\b0 . The Lucas_Kanade function performs the algorithm iterations and updates the topfeatures list. This updated topfeatures list is used to overlay 'displaced' feature points on the frame It+1. Also, the updated topfeatures array serves as features for the next iteration when you consider It+1 and It+2.\'a0 This loop should also display the 'displaced' feature points on the frame It+1 in each iteration, thereby giving an illusion of a movie.The image frames with feature points must be displayed on the same window titled, 'Movie of Feature Points'. NOTE: If an updated feature point exceeds the image dimensions, drop it from the topfeatures list.\
+Lucas_Kanade function should have the following structure with function calls to GetGradient.m; Compute2x2GradientMatrix.m; and Compute2x1ErrorVector.m.\
+function [topfeatures]=Lucas_Kanade(I,J,topfeatures,window) %I is It and J is It+1\
+\'a0\'a0 %1.Compute Gradient Images\
+\'a0\'a0 %[Gx,Gy]=GetGradient(I,sigma)\'a0 %choose sigma as 0.6\
+\'a0\'a0 %2.\'a0
+\b for
+\b0 \'a0each feature point (i,j) in topfeatures\'a0
+\b do
+\b0 \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %2a. Initialize the displacement vector\'a0
+\b u
+\b0 \'a0to zeros. Initialize incremental displacement,\'a0
+\b deltau
+\b0 \'a0to zeros\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %2b. Compute Gradient matrix, Z over the window\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %\'a0 [Z] = Compute2x2GradientMatrix(Gx,Gy,i,j,window,u) %this function must use bilinear interpolated values of Gx and Gy in the window via calls to your Interpolate.m function\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %2c. In an infinite while\'a0
+\b do
+\b0 \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %2c.1 Compute2x1ErrorVector\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 % [err]=Compute2x1ErrorVector(I,J,Gx,Gy,i,j,window,u) %this function must use bilinear interpolated values of Gx, Gy, I, and J in the window via calls to your Interpolate.m function\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %2c.2. Solve 2x2 Linear system to obtain deltau\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \'a0 \'a0\'a0 %2c.3. Update u: u=u+deltau\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %2c.4. Update an iteration count. If iteration count exceeds 10 OR udelta is less than 0.2, break the infinite while loop\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 %
+\b end while
+\b0 \
+\'a0\'a0 %\'a0
+\b end for
+\b0 \
+c) \
+Implement the Harris corner detector  (as a function) discussed in the class to identify top 100 features. These feature points must be at least 2 "city block" distance from one another.\
+}
